@@ -1,0 +1,4 @@
+[submodule "lm-evaluation-harness"]
+	path = lm-evaluation-harness
+	url = git@github.com:junhuihe-hjh/lm-evaluation-harness.git
+	branch = dev-evaluate-CHESS
