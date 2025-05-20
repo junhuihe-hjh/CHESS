@@ -42,6 +42,8 @@ class LLM:
         return self.hf_model(inp.to(self.device))
         
     def generate(self, input_ids, max_new_tokens=128):
+        input_ids = input_ids.copy()
+
         with torch.no_grad():
             prefill_len = len(input_ids)
             
@@ -142,11 +144,11 @@ def llama_mlp_forward_wrapper(method):
     return llama_mlp_forward
 
 if __name__ == '__main__':
-    model_dir = r'/root/workspace/huggingface-models/Llama-3.1-8B-Instruct'
-    thresholds_dir = r'/root/workspace/CHESS-v0.2/thresholds'
+    model_dir = r'../../huggingface-models/Llama-3.1-8B-Instruct'
+    thresholds_dir = r'../thresholds'
 
     tokenizer = AutoTokenizer.from_pretrained(model_dir)
-    model = LLM(model_dir, thresholds_dir, method='CHESS')
+    model = LLM(model_dir, thresholds_dir, method='CHESS+')
     # model = LLM(model_dir)
 
     messages = [
